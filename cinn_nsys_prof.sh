@@ -3,7 +3,7 @@
 set -xe
 
 batch_size=${1:-"256"}
-device_id=${2:-"5"}
+device_id=${2:-"4"}
 use_cinn=${3:-"True"}
 speed_optimization=${4:-"True"}
 logname=${5:-"./log/default"}
@@ -24,6 +24,7 @@ if [ ${use_cinn} == "True" ]; then
   export FLAGS_use_cinn="True"
   export FLAGS_allow_cinn_ops="batch_norm;batch_norm_grad;conv2d;conv2d_grad;elementwise_add;elementwise_add_grad;relu;relu_grad;sum"
   export FLAGS_cinn_use_new_fusion_pass="True"
+  export FLAGS_cinn_use_cuda_vectorize="True"
   #export FLAGS_allow_cinn_ops="conv2d;conv2d_grad;elementwise_add;elementwise_add_grad;relu;relu_grad;sum"
 fi
 
